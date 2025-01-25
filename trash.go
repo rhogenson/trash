@@ -63,11 +63,11 @@ func main() {
 		trash = xdgDataHome + "/Trash"
 	}
 	if err := os.MkdirAll(trash+"/files", 0755); err != nil {
-		fmt.Fprintln(os.Stderr, "trash: ", err)
+		fmt.Fprintln(os.Stderr, "trash:", err)
 		os.Exit(1)
 	}
 	if err := os.MkdirAll(trash+"/info", 0755); err != nil {
-		fmt.Fprintln(os.Stderr, "trash: ", err)
+		fmt.Fprintln(os.Stderr, "trash:", err)
 		os.Exit(1)
 	}
 
@@ -75,7 +75,7 @@ func main() {
 	success := true
 	for _, fileName := range flag.Args() {
 		if err := trashFile(fileName, trash, now); err != nil {
-			fmt.Fprintln(os.Stderr, "trash: ", err)
+			fmt.Fprintln(os.Stderr, "trash:", err)
 			success = false
 		}
 	}
