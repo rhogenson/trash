@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"net/url"
 	"os"
@@ -39,30 +40,42 @@ DeletionDate=%s
 	}
 	if err := os.Rename(fileName, trash+"/files/"+strings.TrimSuffix(filepath.Base(info.Name()), ".trashinfo")); err != nil {
 		os.Remove(info.Name())
-		return fmt.Errorf("%s: trash: %s", fileName, err)
+		return fmt.Errorf("%s: %s", fileName, err)
 	}
 	return nil
 }
 
 func main() {
+	flag.Usage = func() {
+		fmt.Fprintln(os.Stderr, "Usage: trash [FILE]...")
+		flag.PrintDefaults()
+	}
+	flag.Parse()
+
+	if len(flag.Args()) == 0 {
+		fmt.Fprintln(os.Stderr, "trash: missing operand")
+		flag.Usage()
+		os.Exit(1)
+	}
+
 	trash := os.Getenv("HOME") + "/.local/share/Trash"
 	if xdgDataHome := os.Getenv("XDG_DATA_HOME"); xdgDataHome != "" {
 		trash = xdgDataHome + "/Trash"
 	}
 	if err := os.MkdirAll(trash+"/files", 0755); err != nil {
-		fmt.Fprintln(os.Stderr, err)
+		fmt.Fprintln(os.Stderr, "trash: ", err)
 		os.Exit(1)
 	}
 	if err := os.MkdirAll(trash+"/info", 0755); err != nil {
-		fmt.Fprintln(os.Stderr, err)
+		fmt.Fprintln(os.Stderr, "trash: ", err)
 		os.Exit(1)
 	}
 
 	now := time.Now().Format("2006-01-02T15:04:05")
 	success := true
-	for _, fileName := range os.Args[1:] {
+	for _, fileName := range flag.Args() {
 		if err := trashFile(fileName, trash, now); err != nil {
-			fmt.Fprintln(os.Stderr, err)
+			fmt.Fprintln(os.Stderr, "trash: ", err)
 			success = false
 		}
 	}
