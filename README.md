@@ -17,6 +17,16 @@ A **blazingly fast** and **safe** alternative to `rm`, written in Go! 🚀
 
 ## 🚀 Installation
 
+### Use a pre-built release binary (recommended)
+
+Get the latest release from the
+[releases page](https://github.com/rhogenson/trash/releases). Pre-built binaries
+are available for Linux, Mac OS, and Windows.
+
+### Install from source
+
+Or install from source:
+
 ```
 go install github.com/rhogenson/trash@latest
 ```
