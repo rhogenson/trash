@@ -92,7 +92,7 @@ func writeTrashInfo(fileName, trash, now string) (_ string, err error) {
 	}()
 	escapedPath := strings.Split(absPath, string(filepath.Separator))
 	for i, pathSegment := range escapedPath {
-		escapedPath[i] = url.QueryEscape(pathSegment)
+		escapedPath[i] = url.PathEscape(pathSegment)
 	}
 	_, err = fmt.Fprintf(info, `[Trash Info]
 Path=%s
