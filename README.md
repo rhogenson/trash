@@ -18,7 +18,7 @@ A **blazingly fast** and **safe** alternative to `rm`, written in Go! 🚀
 ## 🚀 Installation
 
 ```
-go install gitlab.com/rhogenson/trash@latest
+go install github.com/rhogenson/trash@latest
 ```
 
 ---
