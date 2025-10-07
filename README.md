@@ -28,7 +28,7 @@ are available for Linux, Mac OS, and Windows.
 Or install from source:
 
 ```
-go install github.com/rhogenson/trash@latest
+go install roseh.moe/cmd/trash@latest
 ```
 
 ---
@@ -73,4 +73,4 @@ Trash CLI is compatible with:
 
 ## 📄 License
 
-This project is licensed under the GPLv3 License. See the [COPYING](COPYING) file for details.
+This project is licensed under GPLv3 or later. See the [COPYING](COPYING) file for details.
