@@ -1,3 +1,3 @@
-module github.com/rhogenson/trash
+module roseh.moe/cmd/trash
 
 go 1.23.4
